@@ -6,6 +6,9 @@ LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := libgnss
+LOCAL_SANITIZE += $(GNSS_SANITIZE)
+# activate the following line for debug purposes only, comment out for production
+#LOCAL_SANITIZE_DIAG += $(GNSS_SANITIZE_DIAG)
 LOCAL_VENDOR_MODULE := true
 LOCAL_MODULE_TAGS := optional
 
@@ -21,11 +24,11 @@ LOCAL_SRC_FILES += \
     location_gnss.cpp \
     GnssAdapter.cpp \
     Agps.cpp \
-    XtraSystemStatusObserver.cpp
+    XtraSystemStatusObserver.cpp \
+    NativeAgpsHandler.cpp
 
 LOCAL_CFLAGS += \
      -fno-short-enums \
-     -Wno-reinterpret-base-class
 
 ifeq ($(TARGET_BUILD_VARIANT),user)
    LOCAL_CFLAGS += -DTARGET_BUILD_VARIANT_USER

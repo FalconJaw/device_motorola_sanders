@@ -1,4 +1,4 @@
-/* Copyright (c) 2011-2013, 2015, 2017The Linux Foundation. All rights reserved.
+/* Copyright (c) 2011-2013, 2015, 2017, 2020 The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -29,7 +29,6 @@
 #define LOG_NDEBUG 0
 #define LOG_TAG "LocSvc_MsgTask"
 
-#include <processgroup/sched_policy.h>
 #include <unistd.h>
 #include <MsgTask.h>
 #include <msg_q.h>
@@ -75,10 +74,11 @@ void MsgTask::destroy() {
 }
 
 void MsgTask::sendMsg(const LocMsg* msg) const {
-    if (msg) {
+    if (msg && this) {
         msg_q_snd((void*)mQ, (void*)msg, LocMsgDestroy);
     } else {
-        LOC_LOGE("%s: msg is NULL", __func__);
+        LOC_LOGE("%s: msg is %p and this is %p",
+                 __func__, msg, this);
     }
 }
 
