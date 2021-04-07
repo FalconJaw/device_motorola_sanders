@@ -486,4 +486,14 @@
             <instance>wifidisplayhdcphal</instance>
         </interface>
     </hal>
+<hal format="hidl">
+        <name>android.hardware.secure_element</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>ISecureElement</name>
+            <instance>slot1</instance>
+            <instance>slot2</instance>
+        </interface>
+    </hal>
 </manifest>
