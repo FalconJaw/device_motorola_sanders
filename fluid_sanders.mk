@@ -19,27 +19,36 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_n_mr1.mk)
 
-# Inherit from potter device
+# Inherit from sanders device
 $(call inherit-product, device/motorola/sanders/device.mk)
 
-# Inherit some common LegionOS stuff.
-$(call inherit-product, vendor/legion/config/common_full_phone.mk)
+# Inherit some common Project-Fluid stuff.
+$(call inherit-product, vendor/fluid/config/common_full_phone.mk)
 
-# LegionOS Device Maintainers
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.maintainer.name=Pintos
+# Gapps Flags
+PRODUCT_GMS_CLIENTID_BASE := android-motorola
+TARGET_INCLUDE_GAPPS := true
+TARGET_INCLUDE_MINIMAL_GAPPS := true
+IS_PHONE := true
+TARGET_GAPPS_ARCH := arm64
 
-LEGION_BUILD_TYPE := OFFICIAL
+# Build Type
+FLUID_BUILD_TYPE := UNOFFICIAL
 
 # Boot animation
 TARGET_BOOT_ANIMATION_RES := 1080
 
 ## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := sanders
-PRODUCT_NAME := legion_sanders
+PRODUCT_NAME := fluid_sanders
 PRODUCT_BRAND := motorola
 PRODUCT_MANUFACTURER := motorola
 PRODUCT_MODEL := Moto G (5S) Plus
+
+# Proprieties fluid
+PRODUCT_PRODUCT_PROPERTIES += \
+  ro.fluid.maintainer=FalconJaw \
+  ro.fluid.cpu=SDM625
 
 PRODUCT_SYSTEM_PROPERTY_BLACKLIST := ro.product.model
 
