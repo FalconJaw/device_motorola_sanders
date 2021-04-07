@@ -82,6 +82,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     video.disable.ubwc=1 \
     vendor.camera.aux.packagelist=com.motorola.camera2,com.google.android.Pixel2Mod
 
+# Disable SMD sensor
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.vendor.sensors.smd=false
+
 # Charger
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.charger.enable_suspend=true
